@@ -60,6 +60,7 @@
   <audio data-key="76" src="sounds/tink.wav"></audio>
 
   <script>
+    const startingTime = performance.now();
     function playSound(e) {
       const audio = document.querySelector(`audio[data-key="${e.keyCode}"]`);
       const key = document.querySelector(`.key[data-key="${e.keyCode}"]`);
@@ -69,15 +70,17 @@
       audio.currentTime = 0; //rewind to the start
       audio.play();
     }
-      function removeTransition(e){
-          if(e.propertyName !== 'transform') return; //skip if property is not transform
+    function removeTransition(e) {
+      if (e.propertyName !== 'transform') return; //skip if property is not transform
 
-          this.classList.remove('playing'); //this refers to the 
-      }
+      this.classList.remove('playing'); //this refers to the 
+    }
 
-      const keys=document.querySelectorAll('.key'); //selecting all keys
-      keys.forEach(key => key.addEventListener('transitionend',removeTransition)); //removing transition
+    const keys = document.querySelectorAll('.key'); //selecting all keys
+    keys.forEach(key => key.addEventListener('transitionend', removeTransition)); //removing transition
     window.addEventListener('keydown', playSound);
+    const endingTime = performance.now();
+    console.log('This code took ' + (endingTime - startingTime) + ' milliseconds.');
   </script>
 
 </body>
