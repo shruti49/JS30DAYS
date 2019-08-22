@@ -1,33 +1,20 @@
-const shand = document.querySelector('.second-hand');
-const mhand = document.querySelector('.min-hand');
-const hhand = document.querySelector('.hour-hand');
+const secondHand = document.querySelector('.second-hand');
+const minuteHand = document.querySelector('.min-hand');
+const hourHand = document.querySelector('.hour-hand');
 
 function setDate() {
+  const now = new Date();
+  const sec = now.getSeconds();
+  const min = now.getMinutes();
+  const hour = now.getHours();
 
-    const time = new Date();
-    //getting seconds from date
-    const secs = time.getSeconds();
-    //converting seconds into degrees
-    const sec_deg = ((secs / 60) * 360) + 90;
-    //applying styles to the hand
-    shand.style.transform = `rotate(${sec_deg}deg)`;
-    shand.style.backgroundColor = "red";
+  const secondDegrees = (sec / 60) * 360 + 90;
+  const minuteDegrees = (min / 60) * 360 + 90;
+  const hourDegrees = (hour / 12) * 360 + 90;
 
-
-    //getting minutes from date
-    const mins = time.getMinutes();
-    //converting minutes into degrees
-    const min_deg = ((mins / 60) * 360) + 90;
-    //applying styles to the hand
-    mhand.style.transform = `rotate(${min_deg}deg)`;
-
-
-    //getting hour from date
-    const hours = time.getHours();
-    //converting hours into degrees
-    const hr_deg = ((hours / 12) * 360) + 90;
-    //applying styles to the hand
-    hhand.style.transform = `rotate(${hr_deg}deg)`;
+  secondHand.style.transform = `rotate(${secondDegrees}deg)`;
+  minuteHand.style.transform = `rotate(${minuteDegrees}deg)`;
+  hourHand.style.transform = `rotate(${hourDegrees}deg)`;
 }
 
 setInterval(setDate, 1000);
